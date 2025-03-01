@@ -1,12 +1,16 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import { register } from "./Controller/User.js";
-// import bcrypt from './node_modules/bcryptjs/index.d';
+import userRouter from "./Routes/User.js";
+import contactRouter from "./Routes/contact.js"
 dotenv.config();
 
 const app = express();
+
 app.use(express.json());
+app.use("/api/user",userRouter);
+app.use("/api/contact",contactRouter);
+
 
 mongoose
   .connect(process.env.URI, {
@@ -14,6 +18,7 @@ mongoose
   })
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
+  
 
 const port = 3000;
 app.get("/", (req, res) => {
@@ -24,4 +29,4 @@ app.listen(port, () => {
 });
 
 // USER ROUTES
-app.post("/api/user/register",register);
+
