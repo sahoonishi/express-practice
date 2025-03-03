@@ -1,7 +1,8 @@
 import express from "express";
 import { contactApi, deleteContact, getAll, getContactById, updateContact } from "../Controller/contact.js";
+import { isAuth } from "../middleware/isAuth.js";
 const router = express.Router();
-router.post("/new",contactApi);
+router.post("/new",isAuth,contactApi);
 router.get("/",getAll);
 router.get("/:contactid",getContactById);
 router.put("/:contactidupdate",updateContact);

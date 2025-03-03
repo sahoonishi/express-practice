@@ -6,7 +6,7 @@ export const contactApi = async(req,res)=>{
   const {email,name,phone}=req.body;
   if(!name || !email || !phone) return res.json({message:"ALL fields required"});
   let contact = await Contact.create({
-    name,email,phone
+    name,email,phone,user:req.user
   });
   return res.json({message:"contact added",contact,success:true});
 }
