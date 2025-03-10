@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import { User } from "../Models/User.js";
 import jwt from "jsonwebtoken";
 export const register = async(req,res)=>{
-  console.log("body is ",req.body);
+  // console.log("body is ",req.body);
   const {name , email , password}=req.body;
   if(!name || !email || !password) {
     return res.json({message:"ALL fields are required"});
